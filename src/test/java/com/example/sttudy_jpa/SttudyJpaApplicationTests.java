@@ -21,7 +21,7 @@ class SttudyJpaApplicationTests {
 	}
 	@Test
 	void test(){
-		Q
+	
 		
 	}
 
