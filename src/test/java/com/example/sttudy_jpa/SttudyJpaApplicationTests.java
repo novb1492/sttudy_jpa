@@ -24,7 +24,9 @@ class SttudyJpaApplicationTests {
 	@Test
 	void test(){
 		QdeliverRoomDetailVo QdeliverRoomDetailVo=com.example.sttudy_jpa.QdeliverRoomDetailVo.deliverRoomDetailVo;
-	  	List<deliverRoomDetailVo>list=jpaQueryFactory.selectFrom(QdeliverRoomDetailVo).fetch();
+		QdeliveryRoomVo qdeliveryRoomVo=QdeliveryRoomVo.deliveryRoomVo;
+		
+	  	List<deliverRoomDetailVo>list=jpaQueryFactory.select(QdeliverRoomDetailVo.mchtTrdNo,qdeliveryRoomVo.companyId).From(QdeliverRoomDetailVo).leftJoin(qdeliveryRoomVo).on(QdeliverRoomDetailVo.roomId.eq(qdeliveryRoomVo.roomId)).where(QdeliverRoomDetailVo.roomId.eq(22)).fetch();
 		System.out.println(list.toString());
 	}
 
