@@ -1,9 +1,11 @@
 package com.example.sttudy_jpa;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 
+import javax.persistence.EntityManager;
 import com.example.deliveryRoomDao;
 import com.querydsl.core.types.QList;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import org.junit.jupiter.api.Test;
@@ -21,8 +23,9 @@ class SttudyJpaApplicationTests {
 	}
 	@Test
 	void test(){
-	
-		
+		QdeliverRoomDetailVo QdeliverRoomDetailVo=com.example.sttudy_jpa.QdeliverRoomDetailVo.deliverRoomDetailVo;
+	  	List<deliverRoomDetailVo>list=jpaQueryFactory.selectFrom(QdeliverRoomDetailVo).fetch();
+		System.out.println(list.toString());
 	}
 
 }
