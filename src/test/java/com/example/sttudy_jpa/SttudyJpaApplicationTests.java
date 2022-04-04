@@ -16,6 +16,8 @@ class SttudyJpaApplicationTests {
 
 	@Autowired
 	private JPAQueryFactory jpaQueryFactory;
+	@Autowired
+	private aDao aDao;
 
 
 
@@ -46,10 +48,9 @@ class SttudyJpaApplicationTests {
 		for(aTable a:aTables){
 			List<bTable>bTables=a.getBTables();
 			for(bTable b:bTables){
-				System.out.println(b.getReply());
+				//System.out.println(b.getReply());
 			}
 		}
-
 	}
 	@Test
 	void test3(){
@@ -57,6 +58,18 @@ class SttudyJpaApplicationTests {
 		System.out.println("select *from atable where aid=?");
 		System.out.println(jpaQueryFactory.selectFrom(qaTable).where(qaTable.aId.eq(Long.parseLong("1"))).fetch().get(0).getText());
 		System.out.println("----------------------------------");
+	}
+	@Test
+	//@Transactional
+	void test4(){
+		QaTable qaTable=QaTable.aTable;		
+		System.out.println("update atable set text=? where a_id=?");
+		List<aTable>aTables=jpaQueryFactory.selectFrom(qaTable).where(qaTable.aId.eq(Long.parseLong("1"))).fetch();
+		for(aTable a:aTables){
+			a.setText("updateText");
+		}
+		System.out.println("--------------------------------------------------");
+
 	}
 
 }

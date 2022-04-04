@@ -16,5 +16,12 @@ ex)@JoinColumn(name = "a_id")  본인값
 2.manyToOne=외부 값을 설정한다  
 ex)@JoinColumn(name = "a_id")  외부값  
 
+5.classNotFound Qclass 에러
+-vscode기준 
+Debugger for Java  버전은 0.25.1 낮추면된다  
+
+6.transactional update  
+-함수위에 붙혀 놓으면 update문을 동일 하게 실행 한다  
+
 
 
