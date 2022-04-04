@@ -23,5 +23,9 @@ Debugger for Java  버전은 0.25.1 낮추면된다
 6.transactional update  
 -함수위에 붙혀 놓으면 update문을 동일 하게 실행 한다  
 
+7.지연조인말고 바로 다들고오려면
+-select 에 여러개 넣고 select(qaTable,qbTable)  
+Tuple로 받아서 aTables.get(0).get(qbTable).getReply()꺼내면된다  
+
 
 

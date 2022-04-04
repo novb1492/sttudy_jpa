@@ -3,6 +3,8 @@ package com.example.sttudy_jpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -21,8 +23,7 @@ class SttudyJpaApplicationTests {
 
 
 
-	/*@Test
-	//@Transactional
+	@Test
 	void test(){
 		QaTable qaTable=QaTable.aTable;
 		QbTable qbTable=QbTable.bTable;
@@ -39,7 +40,7 @@ class SttudyJpaApplicationTests {
 		}
 		System.out.println("-----------------------------------------------------------------");
 
-	}*/
+	}
 	@Test
 	void test2(){
 		QaTable qaTable=QaTable.aTable;
@@ -69,7 +70,13 @@ class SttudyJpaApplicationTests {
 			a.setText("updateText");
 		}
 		System.out.println("--------------------------------------------------");
-
+	}
+	@Test
+	void test5(){
+		QaTable qaTable=QaTable.aTable;
+		QbTable qbTable=QbTable.bTable;
+		List<Tuple>aTables=jpaQueryFactory.select(qaTable,qbTable).from(qaTable).leftJoin(qbTable).on(qbTable.aTable.aId.eq(qaTable.aId)).where(qaTable.aId.eq(Long.parseLong("1"))).orderBy(qbTable.Id.desc()).fetch();
+		System.out.println(aTables.get(0).get(qbTable).getReply());
 	}
 
 }
