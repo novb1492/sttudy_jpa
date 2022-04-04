@@ -6,6 +6,7 @@
 3.연관관계 jpa사용시 (manyToOne등)  lazy로 가져올때  
 - could not initialize proxy - no Session 발생  
 1.함수 위에 Transactional  
+or
 2.application.properties에spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true  
 추가한다   
 
