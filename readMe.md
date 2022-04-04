@@ -27,5 +27,10 @@ Debugger for Java  버전은 0.25.1 낮추면된다
 -select 에 여러개 넣고 select(qaTable,qbTable)  
 Tuple로 받아서 aTables.get(0).get(qbTable).getReply()꺼내면된다  
 
+8.페이징
+-offset과 limit로   
+기존 limit start,pageSize  
+.offset(getStart(page, pageSize)-1).limit(pageSize)로하면된다  
+
 
 

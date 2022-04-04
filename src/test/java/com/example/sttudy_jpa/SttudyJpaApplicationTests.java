@@ -75,12 +75,15 @@ class SttudyJpaApplicationTests {
 	void test5(){
 		QaTable qaTable=QaTable.aTable;
 		QbTable qbTable=QbTable.bTable;
-		List<Tuple>tuples=jpaQueryFactory.select(qaTable,qbTable).from(qaTable).leftJoin(qbTable).on(qbTable.aTable.aId.eq(qaTable.aId)).where(qaTable.aId.eq(Long.parseLong("1"))).orderBy(qbTable.Id.desc()).fetch();
+		List<Tuple>tuples=jpaQueryFactory.select(qaTable,qbTable).from(qaTable).leftJoin(qbTable).on(qbTable.aTable.aId.eq(qaTable.aId)).where(qaTable.aId.eq(Long.parseLong("1"))).orderBy(qbTable.Id.desc()).offset(getStart(2, 2)-1).limit(2).fetch();
 		//넣는 객체대로 get/set메소드가 생김 실화임?
 		for(Tuple t:tuples){
 			System.out.println(t.get(qaTable).getText());
 			System.out.println(t.get(qbTable).getReply());
 		}
 	}
+	public  int getStart(int page,int pageSize) {
+        return (page-1)*pageSize+1;//+1 이있는 이유는 1페이질때 대응하기 위해이다  
+    }
 
 }
