@@ -75,8 +75,12 @@ class SttudyJpaApplicationTests {
 	void test5(){
 		QaTable qaTable=QaTable.aTable;
 		QbTable qbTable=QbTable.bTable;
-		List<Tuple>aTables=jpaQueryFactory.select(qaTable,qbTable).from(qaTable).leftJoin(qbTable).on(qbTable.aTable.aId.eq(qaTable.aId)).where(qaTable.aId.eq(Long.parseLong("1"))).orderBy(qbTable.Id.desc()).fetch();
-		System.out.println(aTables.get(0).get(qbTable).getReply());
+		List<Tuple>tuples=jpaQueryFactory.select(qaTable,qbTable).from(qaTable).leftJoin(qbTable).on(qbTable.aTable.aId.eq(qaTable.aId)).where(qaTable.aId.eq(Long.parseLong("1"))).orderBy(qbTable.Id.desc()).fetch();
+		//넣는 객체대로 get/set메소드가 생김 실화임?
+		for(Tuple t:tuples){
+			System.out.println(t.get(qaTable).getText());
+			System.out.println(t.get(qbTable).getReply());
+		}
 	}
 
 }
