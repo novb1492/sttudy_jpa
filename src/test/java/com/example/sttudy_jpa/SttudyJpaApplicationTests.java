@@ -21,11 +21,11 @@ class SttudyJpaApplicationTests {
 	void contextLoads() {
 	}
 	@Test
-	@Transactional
+	//@Transactional
 	void test(){
 		QaTable qaTable=QaTable.aTable;
 		QbTable qbTable=QbTable.bTable;
-		System.out.println(jpaQueryFactory.selectFrom(qaTable).innerJoin(qbTable).on(qaTable.aId.eq(qbTable.bId)).where(qaTable.aId.eq(Long.parseLong("1"))).fetchJoin().fetch());
+		System.out.println(jpaQueryFactory.selectFrom(qaTable).innerJoin(qbTable).on(qaTable.aId.eq(qbTable.bId)).where(qaTable.aId.eq(Long.parseLong("1"))).fetch());
 	}
 
 }
