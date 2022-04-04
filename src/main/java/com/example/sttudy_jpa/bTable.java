@@ -30,7 +30,7 @@ public class bTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "a_id")
     private aTable aTable;
 

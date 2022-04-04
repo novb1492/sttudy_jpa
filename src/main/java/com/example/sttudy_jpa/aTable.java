@@ -33,7 +33,7 @@ public class aTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long aId;
 
-    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "a_id")
     private List<bTable>bTables;
 
