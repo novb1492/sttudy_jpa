@@ -8,3 +8,9 @@
 1.함수 위에 Transactional  
 2.application.properties에spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true  
 추가한다   
+
+4.oneToMany=내 값을 설정한다  
+ex)@JoinColumn(name = "a_id")  본인값  
+manyToOne=외부 값을 설정한다  
+ex)@JoinColumn(name = "a_id")  외부값  
+

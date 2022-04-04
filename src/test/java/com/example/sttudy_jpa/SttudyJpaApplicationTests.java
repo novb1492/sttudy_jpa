@@ -17,17 +17,46 @@ class SttudyJpaApplicationTests {
 	@Autowired
 	private JPAQueryFactory jpaQueryFactory;
 
-	@Test
-	void contextLoads() {
-	}
-	@Test
+
+
+	/*@Test
 	//@Transactional
 	void test(){
 		QaTable qaTable=QaTable.aTable;
 		QbTable qbTable=QbTable.bTable;
-		List<aTable>aTables=jpaQueryFactory.selectFrom(qaTable).innerJoin(qbTable).on(qaTable.aId.eq(qbTable.bId)).where(qaTable.aId.eq(Long.parseLong("1"))).fetch();
+		//select a.*,b.* from test.atable a inner join  test.btable b on b.a_table_a_id=a.a_id where a.a_id=1
+		List<aTable>aTables=jpaQueryFactory.selectFrom(qaTable).leftJoin(qbTable).fetchJoin().on(qbTable.aTable.aId.eq(qaTable.aId)).where(qaTable.aId.eq(Long.parseLong("1"))).fetch();
+		System.out.println("select a.*,b.* from test.atable a inner join  test.btable b on b.a_table_a_id=a.a_id where a.a_id=1");
 		System.out.println("a테이블값만: "+aTables.get(0).getAId());
-		//System.out.println("b테이블값 조인하기: "+aTables.get(0).getBTables().get(0).getBId());
+		//join값 조회시 select로 조회 즉 필요할때 가져옴 ㅎㄷㄷ 하다 
+		for(aTable a:aTables){
+			List<bTable>btables=a.getBTables();
+			for(bTable b:btables){
+				System.out.println("b테이블값 조인하기: "+b.getReply());
+			}
+		}
+		System.out.println("-----------------------------------------------------------------");
+
+	}*/
+	@Test
+	void test2(){
+		QaTable qaTable=QaTable.aTable;
+		QbTable qbTable=QbTable.bTable;
+		List<aTable>aTables=jpaQueryFactory.selectFrom(qaTable).leftJoin(qbTable).fetchJoin().on(qaTable.aId.eq(qbTable.aTable.aId)).where(qaTable.aId.eq(Long.parseLong("1"))).fetch();
+		for(aTable a:aTables){
+			List<bTable>bTables=a.getBTables();
+			for(bTable b:bTables){
+				System.out.println(b.getReply());
+			}
+		}
+
+	}
+	@Test
+	void test3(){
+		QaTable qaTable=QaTable.aTable;
+		System.out.println("select *from atable where aid=?");
+		System.out.println(jpaQueryFactory.selectFrom(qaTable).where(qaTable.aId.eq(Long.parseLong("1"))).fetch().get(0).getText());
+		System.out.println("----------------------------------");
 	}
 
 }
