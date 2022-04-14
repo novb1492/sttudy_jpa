@@ -32,5 +32,8 @@ Tuple로 받아서 aTables.get(0).get(qbTable).getReply()꺼내면된다
 기존 limit start,pageSize  
 .offset(getStart(page, pageSize)-1).limit(pageSize)로하면된다  
 
+9.test코드작성시 authenticationManager에러  
+-authenticationManagerBean으로 구축  + loadUserByUsername 구축하면됨
+
 
 
